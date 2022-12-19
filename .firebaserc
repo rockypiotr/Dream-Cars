@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "dreamcars-3608b"
+  },
+  "targets": {
+    "dreamcars-3608b": {
+      "hosting": {
+        "DreamCars": [
+          "dreamcars-3608b"
+        ]
+      }
+    }
+  }
+}

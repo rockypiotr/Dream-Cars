@@ -1,0 +1,38 @@
+<div class="container">
+  <form>
+    <mat-card class="login-page full-width">
+      <mat-card-header>
+        <mat-card-title>Logowanie</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>E-mail</mat-label>
+            <input matInput type="text" name="email" [(ngModel)]="email">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Hasło</mat-label>
+            <input class="full-width" matInput [type]="hide ? 'password' : 'text'" name="password"
+                   [(ngModel)]="password">
+            <button mat-icon-button matSuffix
+                    (click)="hide = !hide"
+                    [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide"
+            >
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+        </p>
+        <p><a href="auth/register">Zarejestruj się</a></p>
+        <p><a href="#">Zapomniałeś hasła?</a></p>
+        <p>
+          <button mat-raised-button color="primary" (click)="login()">Zaloguj</button>
+        </p>
+
+      </mat-card-content>
+    </mat-card>
+    <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+  </form>
+</div>

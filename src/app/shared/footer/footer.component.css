@@ -1,0 +1,36 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 0;
+  padding: 1rem;
+  background-color: #3f51b5;
+  color: #fff;
+}
+.footer__column {
+  flex: 0 0 30%;
+  max-width: 30%;
+  margin: 0;
+  padding: 0 1rem;
+}
+.footer__title {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.footer__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.footer__item {
+  margin: 0;
+  padding: 0.5rem 0;
+}
+.footer__link {
+  color: #fff;
+  text-decoration: none;
+}
+
+/*# sourceMappingURL=footer.component.css.map */

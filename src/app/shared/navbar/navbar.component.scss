@@ -1,0 +1,15 @@
+li {
+  display: inline-block;
+  list-style: none;
+  margin: 0 5px;
+
+  a {
+    text-decoration: none;
+    color: white;
+    font-weight: lighter;
+  }
+}
+
+.active {
+  border-bottom: 2px solid red;
+}
