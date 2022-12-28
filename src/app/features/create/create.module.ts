@@ -4,14 +4,29 @@ import {CommonModule} from "@angular/common";
 import {CreateRoutingModule} from './create-routing.module';
 import {CreatePageComponent} from "./create-page/create-page.component";
 import {SharedModule} from '../../shared/shared.module';
+import {MatInputModule} from "@angular/material/input";
+import {MatCardModule} from "@angular/material/card";
+import {MatSelectModule} from "@angular/material/select";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatButtonModule} from "@angular/material/button";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
 
 @NgModule({
   declarations: [CreatePageComponent],
-  imports: [
-    CommonModule,
-    SharedModule,
-    CreateRoutingModule
-  ]
+    imports: [
+        CommonModule,
+        SharedModule,
+        CreateRoutingModule,
+        MatInputModule,
+        MatCardModule,
+        MatSelectModule,
+        FormsModule,
+        MatButtonModule,
+        MatDatepickerModule,
+        ReactiveFormsModule,
+        MatButtonToggleModule
+    ]
 })
 export class CreateModule {
 }

@@ -1,1 +1,96 @@
-<p>create-page works!</p>
+<mat-card>
+  <form>
+    <mat-card-header><h3>Podstawowe informacje</h3></mat-card-header>
+
+    <mat-card-content class="form">
+      <mat-form-field appearance="outline" class="form__field">
+        <mat-label>Marka</mat-label>
+        <mat-select [(ngModel)]="selectedBrand" (ngModelChange)="onBrandChange()" name="vehicleBrand">
+          <mat-option *ngFor="let brand of vehicleBrands" [value]="brand.code">
+            {{ brand.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="form__field">
+        <mat-label>Model</mat-label>
+        <mat-select [(ngModel)]="selectedModel" name="vehicleModel">
+          <mat-option *ngFor="let model of availableModels" [value]="model.code">
+            {{ model.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="form__field">
+        <mat-label>Typ</mat-label>
+        <mat-select [(ngModel)]="selectedType" name="vehicleType">
+          <mat-option *ngFor="let type of vehicleTypes" [value]="type.value">
+            {{ type.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="form__field">
+        <mat-label>VIN</mat-label>
+        <input matInput [(ngModel)]="vehicleVIN" name="vehicleVIN">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="form__field">
+        <mat-label>Numer rejestracyjny</mat-label>
+        <input matInput [(ngModel)]="registrationNumber" name="registrationNumber">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="form__field">
+        <mat-label>Rok produkcji</mat-label>
+        <input matInput [(ngModel)]="vehicleProductionYear" type="number" name="vehicleProductionYear">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="form__field">
+        <mat-label>Pojemność silnika</mat-label>
+        <input matInput [(ngModel)]="engineCapacity" type="number" name="engineCapacity">
+        <span matSuffix>cm3</span>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="form__field">
+        <mat-label>Moc silnika</mat-label>
+        <input matInput [(ngModel)]="enginePower" type="number" name="enginePower">
+        <span matSuffix>KM</span>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="form__field">
+        <mat-label>Skrzynia biegów</mat-label>
+        <mat-select [(ngModel)]="selectedGearbox" name="vehicleGearbox">
+          <mat-option *ngFor="let gearbox of vehicleGearbox" [value]="gearbox.value">
+            {{ gearbox.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="form__field">
+        <mat-label>Napęd</mat-label>
+        <mat-select [(ngModel)]="selectedDriveSystem" name="vehicleDriveSystem">
+          <mat-option *ngFor="let driveSystem of vehicleDriveSystems" [value]="driveSystem.value">
+            {{ driveSystem.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="form__field">
+        <mat-label>Kolor</mat-label>
+        <mat-select [(ngModel)]="selectedColor" name="vehicleColor">
+          <mat-option *ngFor="let color of vehicleColors" [value]="color.value">
+            {{ color.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="form__field">
+        <mat-label>Rodzaj koloru</mat-label>
+        <mat-select [(ngModel)]="selectedColorType" name="vehicleColorType">
+          <mat-option *ngFor="let colorType of vehicleColorTypes" [value]="colorType.value">
+            {{ colorType.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="form__field">
+        <mat-label>Cena</mat-label>
+        <input matInput [(ngModel)]="vehiclePrice" type="number" name="vehiclePrice">
+        <span matSuffix>PLN</span>
+      </mat-form-field>
+    </mat-card-content>
+
+    <mat-card-actions class="form__actions">
+      <button mat-stroked-button (click)="resetForm()">Wyczyść formularz</button>
+      <button mat-raised-button color="primary" (click)="addAuction()">Wystaw ogłoszenie</button>
+    </mat-card-actions>
+  </form>
+</mat-card>
