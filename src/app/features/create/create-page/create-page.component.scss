@@ -1,0 +1,26 @@
+@import "src/styles.scss";
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  flex-direction: column;
+
+  @media (min-width: $tablet) {
+    flex-direction: row;
+  }
+
+  &__field {
+    width: 100%;
+    padding: 0.5rem;
+
+    @media (min-width: $tablet) {
+      width: 50%;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: center;
+  }
+}

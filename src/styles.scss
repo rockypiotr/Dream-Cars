@@ -1,5 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
-
 html, body {
   height: 100%;
 }
@@ -16,3 +14,42 @@ body {
 .full-width {
   width: 100%;
 }
+
+.width-50 {
+  width: 50%;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+}
+
+// Paddings
+.p-1 {
+  padding: .25rem;
+}
+
+.p-2 {
+  padding: .5rem;
+}
+
+.p-3 {
+  padding: .75rem;
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.p-5 {
+  padding: 1.25rem;
+}
+
+// Media Queries
+$phone: 320px;
+$tablet: 768px;
+$desktop: 1024px;
