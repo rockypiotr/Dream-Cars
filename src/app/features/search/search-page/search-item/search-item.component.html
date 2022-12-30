@@ -1,0 +1,13 @@
+<div class="m-3">
+  <mat-card *ngFor="let item of auctionsList; let index" class="m-5">
+    <mat-card-header>Aukcja</mat-card-header>
+    <hr>
+    <mat-card-content>
+      <p>Marka: {{ item.brand }}</p>
+      <p>Model: {{ item.model }}</p>
+      <p>Cena: {{ item.price }} PLN</p>
+    </mat-card-content>
+
+    <mat-card-actions></mat-card-actions>
+  </mat-card>
+</div>
