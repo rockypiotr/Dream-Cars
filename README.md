@@ -4,7 +4,7 @@ This is a page similar to otomoto.pl
 
 ## Test account:
 ###### Login: admin@admin.pl
-###### password: admin1234
+###### Password: admin1234
 
 ## Development server
 
