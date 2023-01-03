@@ -22,8 +22,8 @@
       <mat-form-field appearance="outline" class="form__field">
         <mat-label>Typ</mat-label>
         <mat-select [(ngModel)]="selectedType" name="vehicleType">
-          <mat-option *ngFor="let type of vehicleTypes" [value]="type.value">
-            {{ type.viewValue }}
+          <mat-option *ngFor="let type of vehicleTypes" [value]="type">
+            {{ type }}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -52,32 +52,32 @@
       <mat-form-field appearance="outline" class="form__field">
         <mat-label>Skrzynia biegów</mat-label>
         <mat-select [(ngModel)]="selectedGearbox" name="vehicleGearbox">
-          <mat-option *ngFor="let gearbox of vehicleGearbox" [value]="gearbox.value">
-            {{ gearbox.viewValue }}
+          <mat-option *ngFor="let gearbox of vehicleGearbox" [value]="gearbox">
+            {{ gearbox }}
           </mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field appearance="outline" class="form__field">
         <mat-label>Napęd</mat-label>
         <mat-select [(ngModel)]="selectedDriveSystem" name="vehicleDriveSystem">
-          <mat-option *ngFor="let driveSystem of vehicleDriveSystems" [value]="driveSystem.value">
-            {{ driveSystem.viewValue }}
+          <mat-option *ngFor="let driveSystem of vehicleDriveSystems" [value]="driveSystem">
+            {{ driveSystem }}
           </mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field appearance="outline" class="form__field">
         <mat-label>Kolor</mat-label>
         <mat-select [(ngModel)]="selectedColor" name="vehicleColor">
-          <mat-option *ngFor="let color of vehicleColors" [value]="color.value">
-            {{ color.viewValue }}
+          <mat-option *ngFor="let color of vehicleColors" [value]="color">
+            {{ color }}
           </mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field appearance="outline" class="form__field">
         <mat-label>Rodzaj koloru</mat-label>
         <mat-select [(ngModel)]="selectedColorType" name="vehicleColorType">
-          <mat-option *ngFor="let colorType of vehicleColorTypes" [value]="colorType.value">
-            {{ colorType.viewValue }}
+          <mat-option *ngFor="let colorType of vehicleColorTypes" [value]="colorType">
+            {{ colorType }}
           </mat-option>
         </mat-select>
       </mat-form-field>
