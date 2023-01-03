@@ -17,7 +17,6 @@ export class SearchItemComponent implements OnInit {
   ngOnInit(): void {
     this.searchData.getItems().subscribe(res => {
       this.auctionsList = res.map((e: any) => {
-        console.log(e.payload.doc.data());
         return e.payload.doc.data();
       }, (err: any) => {
         console.error(err);

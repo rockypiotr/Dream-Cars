@@ -6,7 +6,10 @@ import {ColorsEnum} from "../../../enums/ColorsEnum";
 import {DriveSystemsEnum} from "../../../enums/DriveSystemsEnum";
 import {ColorTypesEnum} from "../../../enums/ColorTypesEnum";
 import {TypesEnum} from "../../../enums/TypesEnum";
-import { v4 as uuidv4 } from "uuid";
+import {v4 as uuidv4} from "uuid";
+import {SnackBarService} from "../../../core/services/snackBar.service";
+import {Router} from "@angular/router";
+
 @Component({
   selector: 'app-create-page',
   templateUrl: './create-page.component.html',
@@ -108,7 +111,7 @@ export class CreatePageComponent implements OnInit {
   vehicleColors = Object.values(ColorsEnum);
   vehicleColorTypes = Object.values(ColorTypesEnum);
 
-  constructor(private firestore: AngularFirestore) {
+  constructor(private _firestore: AngularFirestore, private _snackBar: SnackBarService, private _router: Router) {
   }
 
   onBrandChange() {
@@ -147,10 +150,11 @@ export class CreatePageComponent implements OnInit {
     this.auctionData.color_type = <ColorTypesEnum>this.selectedColorType;
     this.auctionData.price = this.vehiclePrice;
 
-    this.firestore.collection('/T_Auction').add(this.auctionData)
+    this._firestore.collection('/T_Auction').add(this.auctionData)
       .then(() => {
         this.resetForm();
-        console.log('Successfully added auction');
+        this._router.navigate(['search']);
+        this._snackBar.openSnackBar("Pomyślnie utworzono aukcje!", "OK", "center", "top", 5000);
       })
       .catch((error) => {
         console.error("Error adding auction: ", error);
