@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuctionService} from "../../../../core/services/auction.service";
 import {Auction} from "../../../../model/auction";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-search-item',
@@ -11,7 +12,7 @@ export class SearchItemComponent implements OnInit {
   auctionsList: Auction[] = [];
   id: string = '';
 
-  constructor(private searchData: AuctionService) {
+  constructor(private searchData: AuctionService, public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -27,7 +28,8 @@ export class SearchItemComponent implements OnInit {
   }
 
   onRemove(auctionID: string) {
-    this.searchData.deleteAuctionById(auctionID);
+    if (confirm("Czy na pewno chcesz usunąć aukcje?"))
+      this.searchData.deleteAuctionById(auctionID);
   }
 
   addToFavourite(auctionID: string) {
