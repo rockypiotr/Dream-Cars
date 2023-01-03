@@ -11,22 +11,28 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatButtonModule} from "@angular/material/button";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {SnackBarService} from "../../core/services/snackBar.service";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [CreatePageComponent],
-    imports: [
-        CommonModule,
-        SharedModule,
-        CreateRoutingModule,
-        MatInputModule,
-        MatCardModule,
-        MatSelectModule,
-        FormsModule,
-        MatButtonModule,
-        MatDatepickerModule,
-        ReactiveFormsModule,
-        MatButtonToggleModule
-    ]
+  imports: [
+    CommonModule,
+    SharedModule,
+    CreateRoutingModule,
+    MatInputModule,
+    MatCardModule,
+    MatSelectModule,
+    FormsModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    ReactiveFormsModule,
+    MatButtonToggleModule,
+    MatSnackBarModule,
+  ],
+  providers: [
+    SnackBarService
+  ]
 })
 export class CreateModule {
 }
