@@ -1,11 +1,18 @@
+@import "src/styles.scss";
+
 .footer {
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  flex-direction: column;
   margin: 0;
   padding: 1rem;
   background-color: #3f51b5;
   color: #fff;
+
+  @media (min-width: $tablet) {
+    flex-direction: row;
+  }
 
   &__column {
     flex: 0 0 30%;

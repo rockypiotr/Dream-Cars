@@ -1,36 +1,17 @@
-.footer {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  margin: 0;
-  padding: 1rem;
-  background-color: #3f51b5;
-  color: #fff;
-}
-.footer__column {
-  flex: 0 0 30%;
-  max-width: 30%;
-  margin: 0;
-  padding: 0 1rem;
-}
-.footer__title {
-  margin: 0;
-  font-size: 1.2rem;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-.footer__list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.footer__item {
-  margin: 0;
-  padding: 0.5rem 0;
-}
-.footer__link {
-  color: #fff;
-  text-decoration: none;
-}
+/* Error: Can't find stylesheet to import.
+ *   ,
+ * 1 | @import "src/styles.scss";
+ *   |         ^^^^^^^^^^^^^^^^^
+ *   '
+ *   footer.component.scss 1:9  root stylesheet */
 
-/*# sourceMappingURL=footer.component.css.map */
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Can't find stylesheet to import.\a   \2577 \a 1 \2502  @import \"src/styles.scss\";\d\a   \2502          ^^^^^^^^^^^^^^^^^\a   \2575 \a   footer.component.scss 1:9  root stylesheet";
+}
