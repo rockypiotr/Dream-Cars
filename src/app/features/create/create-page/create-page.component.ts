@@ -1,9 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {Auction} from "../../../model/auction";
-import {Vehicle} from "../../../model/vehicle";
-
-
+import {GearboxEnum} from "../../../enums/GearboxEnum";
+import {ColorsEnum} from "../../../enums/ColorsEnum";
+import {DriveSystemsEnum} from "../../../enums/DriveSystemsEnum";
+import {ColorTypesEnum} from "../../../enums/ColorTypesEnum";
+import {TypesEnum} from "../../../enums/TypesEnum";
+import { v4 as uuidv4 } from "uuid";
 @Component({
   selector: 'app-create-page',
   templateUrl: './create-page.component.html',
@@ -12,18 +15,19 @@ import {Vehicle} from "../../../model/vehicle";
 
 export class CreatePageComponent implements OnInit {
   auctionData: Auction = {
+    ID: '',
     VIN: '',
     brand: '',
     model: '',
-    type: '',
-    color: '',
-    color_type: '',
-    drive_system: '',
-    engine_capacity: 0,
-    engine_power: 0,
-    gearbox: '',
-    price: 0,
-    production_year: 0,
+    type: <TypesEnum>{},
+    color: <ColorsEnum>{},
+    color_type: <ColorTypesEnum>{},
+    drive_system: <DriveSystemsEnum>{},
+    engine_capacity: NaN,
+    engine_power: NaN,
+    gearbox: <GearboxEnum>{},
+    price: NaN,
+    production_year: NaN,
     registration_number: ''
   }
   selectedBrand: string = '';
@@ -40,8 +44,6 @@ export class CreatePageComponent implements OnInit {
   selectedColor: string = '';
   selectedColorType: string = '';
   vehiclePrice: number = 0;
-
-
 
   vehicleBrands = [{
     code: 'TOY',
@@ -100,32 +102,11 @@ export class CreatePageComponent implements OnInit {
     }
   ];
 
-  vehicleTypes: Vehicle[] = [
-    {value: 'sedan', viewValue: 'Sedan'},
-    {value: 'kombi', viewValue: 'Kombi'},
-    {value: 'hatchback', viewValue: 'Hatchback'},
-    {value: 'coupe', viewValue: 'Coupe'},
-  ];
-
-  vehicleGearbox: Vehicle[] = [
-    {value: 'aut', viewValue: 'Automatyczna'},
-    {value: 'man', viewValue: 'Manualna'},
-    {value: 'other', viewValue: 'Inna'},
-  ]
-  vehicleDriveSystems: Vehicle[] = [
-    {value: 'RWD', viewValue: 'Na tylne koła'},
-    {value: 'FWD', viewValue: 'Na przednie koła'},
-    {value: 'AWD', viewValue: '4x4'},
-  ]
-  vehicleColors: Vehicle[] = [
-    {value: 'black', viewValue: 'Czarny'},
-    {value: 'white', viewValue: 'Biały'},
-  ]
-  vehicleColorTypes: Vehicle[] = [
-    {value: 'mat', viewValue: 'Matowy'},
-    {value: 'metalic', viewValue: 'Metaliczny'},
-    {value: 'pearl', viewValue: 'Perłowy'},
-  ]
+  vehicleTypes = Object.values(TypesEnum);
+  vehicleGearbox = Object.values(GearboxEnum);
+  vehicleDriveSystems = Object.values(DriveSystemsEnum);
+  vehicleColors = Object.values(ColorsEnum);
+  vehicleColorTypes = Object.values(ColorTypesEnum);
 
   constructor(private firestore: AngularFirestore) {
   }
@@ -137,41 +118,43 @@ export class CreatePageComponent implements OnInit {
   resetForm() {
     this.selectedBrand = '';
     this.selectedModel = '';
-    this.selectedType = '';
+    this.selectedType = <TypesEnum>{};
     this.vehicleProductionYear = 0;
     this.vehicleVIN = '';
     this.registrationNumber = '';
     this.engineCapacity = 0;
     this.enginePower = 0;
-    this.selectedGearbox = '';
-    this.selectedDriveSystem = '';
-    this.selectedColor = '';
-    this.selectedColorType = '';
+    this.selectedGearbox = <GearboxEnum>{};
+    this.selectedDriveSystem = <DriveSystemsEnum>{};
+    this.selectedColor = <ColorsEnum>{};
+    this.selectedColorType = <ColorTypesEnum>{};
     this.vehiclePrice = 0;
   }
 
   addAuction() {
-    try {
-      this.auctionData.brand = this.selectedBrand;
-      this.auctionData.model = this.selectedModel;
-      this.auctionData.type = this.selectedType
-      this.auctionData.production_year = this.vehicleProductionYear;
-      this.auctionData.VIN = this.vehicleVIN;
-      this.auctionData.registration_number = this.registrationNumber;
-      this.auctionData.engine_capacity = this.engineCapacity;
-      this.auctionData.engine_power = this.enginePower;
-      this.auctionData.gearbox = this.selectedGearbox;
-      this.auctionData.drive_system = this.selectedDriveSystem;
-      this.auctionData.color = this.selectedColor;
-      this.auctionData.color_type = this.selectedColorType;
-      this.auctionData.price = this.vehiclePrice;
+    this.auctionData.ID = uuidv4();
+    this.auctionData.brand = this.selectedBrand;
+    this.auctionData.model = this.selectedModel;
+    this.auctionData.type = <TypesEnum>this.selectedType
+    this.auctionData.production_year = this.vehicleProductionYear;
+    this.auctionData.VIN = this.vehicleVIN;
+    this.auctionData.registration_number = this.registrationNumber;
+    this.auctionData.engine_capacity = this.engineCapacity;
+    this.auctionData.engine_power = this.enginePower;
+    this.auctionData.gearbox = <GearboxEnum>this.selectedGearbox;
+    this.auctionData.drive_system = <DriveSystemsEnum>this.selectedDriveSystem;
+    this.auctionData.color = <ColorsEnum>this.selectedColor;
+    this.auctionData.color_type = <ColorTypesEnum>this.selectedColorType;
+    this.auctionData.price = this.vehiclePrice;
 
-      this.resetForm();
-
-      this.firestore.collection('/T_Auction').add(this.auctionData);
-    } catch (e) {
-      alert("Technical error");
-    }
+    this.firestore.collection('/T_Auction').add(this.auctionData)
+      .then(() => {
+        this.resetForm();
+        console.log('Successfully added auction');
+      })
+      .catch((error) => {
+        console.error("Error adding auction: ", error);
+      })
   }
 
   ngOnInit(): void {

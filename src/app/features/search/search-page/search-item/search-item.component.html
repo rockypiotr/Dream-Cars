@@ -1,4 +1,4 @@
-<mat-card *ngFor="let item of auctionsList; let index" class="search-result m-5">
+<mat-card *ngFor="let item of auctionsList; let i = index" class="search-result m-5">
   <div class="search-result__image-container">
     <img src="./assets/vehicle2.png" alt="vehicle-thumbnail" class="image__thumbnail">
   </div>
@@ -33,17 +33,16 @@
   </div>
   <mat-card-actions class="search-result__actions">
     <button mat-icon-button>
-      <mat-icon [attr.aria-label]="'Cancel auction'" color="warn" (click)="deleteItem()">cancel</mat-icon>
+      <mat-icon [attr.aria-label]="'Cancel auction'" color="warn" (click)="onRemove(item.ID)">cancel</mat-icon>
     </button>
     <button mat-icon-button>
-      <mat-icon [attr.aria-label]="'Cancel auction'" color="primary" (click)="addToFavourite()">favorite</mat-icon>
+      <mat-icon [attr.aria-label]="'Cancel auction'" color="primary" (click)="addToFavourite(item.ID)">favorite</mat-icon>
     </button>
     <button mat-icon-button>
-      <mat-icon [attr.aria-label]="'Cancel auction'" color="primary" (click)="downloadItem()">download</mat-icon>
+      <mat-icon [attr.aria-label]="'Cancel auction'" color="primary" (click)="onDownload(item.ID)">download</mat-icon>
     </button>
   </mat-card-actions>
 </mat-card>
-
 
 <ng-template #empty>
   Brak informacji

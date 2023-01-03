@@ -6,7 +6,7 @@ import {SharedModule} from '../../shared/shared.module';
 import {SearchPageComponent} from "./search-page/search-page.component";
 import {SearchItemComponent} from './search-page/search-item/search-item.component';
 import {MatCardModule} from "@angular/material/card";
-import {SearchItemService} from "../../core/services/search-item.service";
+import {AuctionService} from "../../core/services/auction.service";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 
@@ -21,7 +21,7 @@ import {MatIconModule} from "@angular/material/icon";
     MatIconModule
   ],
   providers: [
-    SearchItemService
+    AuctionService
   ]
 
 })

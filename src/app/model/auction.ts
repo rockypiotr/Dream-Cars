@@ -1,15 +1,22 @@
+import {GearboxEnum} from "../enums/GearboxEnum";
+import {DriveSystemsEnum} from "../enums/DriveSystemsEnum";
+import {ColorTypesEnum} from "../enums/ColorTypesEnum";
+import {ColorsEnum} from "../enums/ColorsEnum";
+import {TypesEnum} from "../enums/TypesEnum";
+
 export interface Auction {
-  VIN?: string;
-  brand?: string;
-  model?: string;
-  type?: string;
-  color?: string;
-  color_type?: string;
-  drive_system?: string;
-  engine_capacity?: number;
-  engine_power?: number;
-  gearbox?: string;
-  price?: number;
-  production_year?: number;
-  registration_number?: string;
+  ID: string;
+  VIN: string;
+  brand: string;
+  model: string;
+  type: TypesEnum;
+  color: ColorsEnum;
+  color_type: ColorTypesEnum;
+  drive_system: DriveSystemsEnum;
+  engine_capacity: number;
+  engine_power: number;
+  gearbox: GearboxEnum;
+  price: number;
+  production_year: number;
+  registration_number: string;
 }
