@@ -9,7 +9,6 @@ import {Auction} from "../../../../model/auction";
 })
 export class SearchItemComponent implements OnInit {
   auctionsList: Auction[] = [];
-  id: string = '';
 
   constructor(private searchData: AuctionService) {
   }
@@ -24,18 +23,4 @@ export class SearchItemComponent implements OnInit {
       })
     })
   }
-
-  onRemove(auctionID: string) {
-    if (confirm("Czy na pewno chcesz usunąć aukcje?"))
-      this.searchData.deleteAuctionById(auctionID);
-  }
-
-  addToFavourite(auctionID: string) {
-    alert("Dodanie rekordu do ulubionych nie jest teraz możliwe");
-  }
-
-  onDownload(auctionID: string) {
-    alert("Pobranie rekordu nie jest teraz możliwe");
-  }
-
 }

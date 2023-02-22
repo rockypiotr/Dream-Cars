@@ -1,47 +1,37 @@
-<mat-card *ngFor="let item of auctionsList; let i = index" class="search-result m-5">
+<mat-card *ngFor="let auction of auctionsList" class="search-result m-5">
   <div class="search-result__image-container">
     <img src="./assets/vehicle2.png" alt="vehicle-thumbnail" class="image__thumbnail">
   </div>
   <div class="search-result__description">
-    <mat-card-header class="search-result__title">{{ item.brand }} {{ item.model }}</mat-card-header>
+    <mat-card-header class="search-result__title">{{ auction.brand }} {{ auction.model }}</mat-card-header>
     <mat-card-content class="search-result__description-container">
       <div>
         <h3 class="search-result__description__header">Skrzynia biegów:</h3>
-        <span *ngIf="item.gearbox; else empty">{{ item.gearbox }}</span>
+        <span *ngIf="auction.gearbox; else empty">{{ auction.gearbox }}</span>
       </div>
       <div>
         <h3 class="search-result__description__header">Model:</h3>
-        <span *ngIf="item.model; else empty">{{ item.model }}</span>
+        <span *ngIf="auction.model; else empty">{{ auction.model }}</span>
       </div>
       <div>
         <h3 class="search-result__description__header">Silnik:</h3>
-        <span *ngIf="item.engine_capacity; else empty">{{ item.engine_capacity }} cm3</span>
+        <span *ngIf="auction.engine_capacity; else empty">{{ auction.engine_capacity }} cm3</span>
       </div>
       <div>
         <h3 class="search-result__description__header">Moc:</h3>
-        <span *ngIf="item.engine_power; else empty">{{ item.engine_power }} km</span>
+        <span *ngIf="auction.engine_power; else empty">{{ auction.engine_power }} km</span>
       </div>
       <div>
         <h3 class="search-result__description__header">Rok produkcji:</h3>
-        <span *ngIf="item.production_year; else empty">{{ item.production_year }}</span>
+        <span *ngIf="auction.production_year; else empty">{{ auction.production_year }}</span>
       </div>
       <div>
         <h3 class="search-result__description__header">Numer rejestracyjny:</h3>
-        <span *ngIf="item.registration_number; else empty">{{ item.registration_number }}</span>
+        <span *ngIf="auction.registration_number; else empty">{{ auction.registration_number }}</span>
       </div>
     </mat-card-content>
   </div>
-  <mat-card-actions class="search-result__actions">
-    <button mat-icon-button>
-      <mat-icon [attr.aria-label]="'Cancel auction'" color="warn" (click)="onRemove(item.ID)">cancel</mat-icon>
-    </button>
-    <button mat-icon-button>
-      <mat-icon [attr.aria-label]="'Cancel auction'" color="primary" (click)="addToFavourite(item.ID)">favorite</mat-icon>
-    </button>
-    <button mat-icon-button>
-      <mat-icon [attr.aria-label]="'Cancel auction'" color="primary" (click)="onDownload(item.ID)">download</mat-icon>
-    </button>
-  </mat-card-actions>
+  <app-action-button-list [auctionID]="auction.ID" class="search-result__actions"></app-action-button-list>
 </mat-card>
 
 <ng-template #empty>
