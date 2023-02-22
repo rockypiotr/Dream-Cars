@@ -12,7 +12,7 @@ export class AuctionService {
     return this.firestore.collection(this._path).snapshotChanges();
   }
 
-  deleteAuctionById(auctionID: string) {
+  deleteById(auctionID: string) {
     return this.firestore.collection(this._path, ref => ref.where('ID', '==', auctionID)).get()
       .forEach((collection) => {
         collection.docs
