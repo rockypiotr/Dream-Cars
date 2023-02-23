@@ -1,0 +1,8 @@
+.image__thumbnail {
+  height: 150px;
+  max-width: 150px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+/*# sourceMappingURL=auction-thumbnail.component.css.map */

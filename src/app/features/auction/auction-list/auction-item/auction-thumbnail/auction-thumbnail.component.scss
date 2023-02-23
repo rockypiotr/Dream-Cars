@@ -1,0 +1,9 @@
+.image {
+
+  &__thumbnail {
+    height: 150px;
+    max-width: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+}

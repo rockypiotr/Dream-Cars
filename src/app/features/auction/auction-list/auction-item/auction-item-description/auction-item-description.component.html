@@ -1,0 +1,33 @@
+<div class="auction-item__description">
+    <mat-card-header class="auction-item__title">{{ auction.brand }} {{ auction.model }}</mat-card-header>
+    <mat-card-content class="auction-item__description-container">
+        <div>
+            <h3 class="auction-item__description__header">Skrzynia biegów:</h3>
+            <span *ngIf="auction.gearbox; else empty">{{ auction.gearbox }}</span>
+        </div>
+        <div>
+            <h3 class="auction-item__description__header">Model:</h3>
+            <span *ngIf="auction.model; else empty">{{ auction.model }}</span>
+        </div>
+        <div>
+            <h3 class="auction-item__description__header">Silnik:</h3>
+            <span *ngIf="auction.engine_capacity; else empty">{{ auction.engine_capacity }} cm3</span>
+        </div>
+        <div>
+            <h3 class="auction-item__description__header">Moc:</h3>
+            <span *ngIf="auction.engine_power; else empty">{{ auction.engine_power }} km</span>
+        </div>
+        <div>
+            <h3 class="auction-item__description__header">Rok produkcji:</h3>
+            <span *ngIf="auction.production_year; else empty">{{ auction.production_year }}</span>
+        </div>
+        <div>
+            <h3 class="auction-item__description__header">Numer rejestracyjny:</h3>
+            <span *ngIf="auction.registration_number; else empty">{{ auction.registration_number }}</span>
+        </div>
+    </mat-card-content>
+</div>
+
+<ng-template #empty>
+  Brak informacji
+</ng-template>
