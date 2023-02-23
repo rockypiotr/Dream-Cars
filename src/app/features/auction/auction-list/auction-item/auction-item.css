@@ -1,0 +1,18 @@
+.auction-item {
+  display: flex;
+  flex-direction: row;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
+}
+.auction-item__image-container {
+  display: flex;
+  align-items: center;
+}
+.auction-item__description {
+  width: 100%;
+}
+.auction-item__actions {
+  display: flex;
+}
+
+/*# sourceMappingURL=auction-item.css.map */
