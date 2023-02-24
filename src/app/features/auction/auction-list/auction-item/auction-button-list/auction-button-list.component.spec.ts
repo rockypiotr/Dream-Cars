@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ActionButtonListComponent } from './action-button-list.component';
+import { AuctionButtonListComponent } from './auction-button-list.component';
 
 describe('ActionButtonListComponent', () => {
-  let component: ActionButtonListComponent;
-  let fixture: ComponentFixture<ActionButtonListComponent>;
+  let component: AuctionButtonListComponent;
+  let fixture: ComponentFixture<AuctionButtonListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ActionButtonListComponent ]
-    })
-    .compileComponents();
+      declarations: [AuctionButtonListComponent],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(ActionButtonListComponent);
+    fixture = TestBed.createComponent(AuctionButtonListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -9,10 +9,10 @@ import { MatCardModule } from '@angular/material/card';
 import { AuctionService } from '../../core/services/auction.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { RemoveButtonComponent } from './auction-list/auction-item/action-button-list/remove-button/remove-button.component';
-import { ActionButtonListComponent } from './auction-list/auction-item/action-button-list/action-button-list.component';
-import { DownloadButtonComponent } from './auction-list/auction-item/action-button-list/download-button/download-button.component';
-import { FavouriteButtonComponent } from './auction-list/auction-item/action-button-list/favourite-button/favourite-button.component';
+import { RemoveButtonComponent } from './auction-list/auction-item/auction-button-list/remove-button/remove-button.component';
+import { AuctionButtonListComponent } from './auction-list/auction-item/auction-button-list/auction-button-list.component';
+import { DownloadButtonComponent } from './auction-list/auction-item/auction-button-list/download-button/download-button.component';
+import { FavouriteButtonComponent } from './auction-list/auction-item/auction-button-list/favourite-button/favourite-button.component';
 import { AuctionItemDescriptionComponent } from './auction-list/auction-item/auction-item-description/auction-item-description.component';
 import { AuctionThumbnailComponent } from './auction-list/auction-item/auction-thumbnail/auction-thumbnail.component';
 
@@ -21,7 +21,7 @@ import { AuctionThumbnailComponent } from './auction-list/auction-item/auction-t
     AuctionListComponent,
     AuctionItem,
     RemoveButtonComponent,
-    ActionButtonListComponent,
+    AuctionButtonListComponent,
     DownloadButtonComponent,
     FavouriteButtonComponent,
     AuctionItemDescriptionComponent,
