@@ -10,10 +10,10 @@ import { AuctionService } from '../../../core/services/auction.service';
 export class AuctionListComponent implements OnInit {
   auctionsList: Auction[] = [];
 
-  constructor(private searchData: AuctionService) {}
+  constructor(private _auction: AuctionService) {}
 
   ngOnInit(): void {
-    this.searchData.getItems().subscribe((res) => {
+    this._auction.get().subscribe((res) => {
       this.auctionsList = res.map(
         (e: any) => {
           return e.payload.doc.data();
