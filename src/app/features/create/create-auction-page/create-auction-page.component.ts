@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Auction } from '../../../model/auction';
 import { GearboxEnum } from '../../../enums/GearboxEnum';
 import { ColorsEnum } from '../../../enums/ColorsEnum';
@@ -8,6 +8,9 @@ import { TypesEnum } from '../../../enums/TypesEnum';
 import { AuctionService } from '../../../core/services/auction.service';
 import { Router } from '@angular/router';
 import { SnackBarService } from '../../../core/services/snackBar.service';
+import { NgForm } from '@angular/forms';
+import { v4 as uuidv4 } from 'uuid';
+import { vehicleBrands } from '../../../core/data/vehicle-brands';
 
 @Component({
   selector: 'app-create-auction-page',
@@ -15,79 +18,9 @@ import { SnackBarService } from '../../../core/services/snackBar.service';
   styleUrls: ['./create-auction-page.component.scss'],
 })
 export class CreateAuctionPageComponent {
-  auctionData: Auction = {
-    ID: '',
-    VIN: '',
-    brand: '',
-    model: '',
-    type: <TypesEnum>{},
-    color: <ColorsEnum>{},
-    color_type: <ColorTypesEnum>{},
-    drive_system: <DriveSystemsEnum>{},
-    engine_capacity: 0,
-    engine_power: 0,
-    gearbox: <GearboxEnum>{},
-    price: 0,
-    production_year: 0,
-    registration_number: '',
-  };
-  vehicleBrands = [
-    {
-      code: 'TOY',
-      name: 'Toyota',
-      models: [
-        { code: 'CAM', name: 'Camry' },
-        { code: 'COR', name: 'Corolla' },
-        { code: 'RAV', name: 'Rav4' },
-        { code: 'HIG', name: 'Highlander' },
-        { code: 'PRI', name: 'Prius' },
-      ],
-    },
-    {
-      code: 'FOR',
-      name: 'Ford',
-      models: [
-        { code: 'FIE', name: 'Fiesta' },
-        { code: 'FOC', name: 'Focus' },
-        { code: 'MUS', name: 'Mustang' },
-        { code: 'EXP', name: 'Explorer' },
-        { code: 'F15', name: 'F-150' },
-      ],
-    },
-    {
-      code: 'CHE',
-      name: 'Chevrolet',
-      models: [
-        { code: 'MAL', name: 'Malibu' },
-        { code: 'CRU', name: 'Cruze' },
-        { code: 'EQU', name: 'Equinox' },
-        { code: 'TRA', name: 'Traverse' },
-        { code: 'SIL', name: 'Silverado' },
-      ],
-    },
-    {
-      code: 'HON',
-      name: 'Honda',
-      models: [
-        { code: 'CIV', name: 'Civic' },
-        { code: 'ACC', name: 'Accord' },
-        { code: 'CRV', name: 'CR-V' },
-        { code: 'ODY', name: 'Odyssey' },
-        { code: 'FIT', name: 'Fit' },
-      ],
-    },
-    {
-      code: 'NIS',
-      name: 'Nissan',
-      models: [
-        { code: 'ALT', name: 'Altima' },
-        { code: 'SEN', name: 'Sentra' },
-        { code: 'VER', name: 'Versa' },
-        { code: 'ROG', name: 'Rogue' },
-        { code: 'MAX', name: 'Maxima' },
-      ],
-    },
-  ];
+  @ViewChild('auctionForm') auctionForm!: NgForm;
+  auctionData!: Auction;
+  brands = vehicleBrands;
   availableModels: { code: string; name: string }[] = [];
   vehicleTypes = Object.values(TypesEnum);
   vehicleGearbox = Object.values(GearboxEnum);
@@ -102,15 +35,37 @@ export class CreateAuctionPageComponent {
   ) {}
 
   onBrandChange() {
-    this.availableModels = this.vehicleBrands.find(
-      (vehicleModel) => vehicleModel.name === this.auctionData.brand
-    )!.models;
+    if (this.auctionForm.value.brand) {
+      this.availableModels = this.brands.find(
+        (vehicleModel) => vehicleModel.name === this.auctionForm.value.brand
+      )!.models;
+    }
   }
 
-  createAuction() {
+  onReset(form: NgForm) {
+    form.reset();
+  }
+
+  onSubmit(form: NgForm) {
+    this.auctionData = {
+      ID: uuidv4(),
+      VIN: form.value.VIN,
+      brand: form.value.brand,
+      model: form.value.model,
+      type: form.value.type,
+      color: form.value.color,
+      color_type: form.value.color_type,
+      drive_system: form.value.drive_system,
+      engine_capacity: form.value.engine_capacity,
+      engine_power: form.value.engine_power,
+      gearbox: form.value.gearbox,
+      price: form.value.price,
+      production_year: form.value.production_year,
+      registration_number: form.value.registration_number,
+    };
     this._auction.create(this.auctionData);
     this._router.navigate(['search']).then(() => {
-      this._snackBar.openSnackBar(
+      this._snackBar.open(
         'Pomyślnie utworzono aukcje!',
         'OK',
         'center',

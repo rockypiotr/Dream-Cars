@@ -1,19 +1,29 @@
 <mat-card>
-  <form #createAuctionForm>
+  <form #auctionForm="ngForm" (ngSubmit)="onSubmit(auctionForm)">
     <mat-card-header><h3>Podstawowe informacje</h3></mat-card-header>
 
     <mat-card-content class="form">
       <mat-form-field appearance="outline" class="form__field">
         <mat-label>Marka</mat-label>
-        <mat-select [(ngModel)]="auctionData.brand" (ngModelChange)="onBrandChange()" name="vehicleBrand">
-          <mat-option *ngFor="let brand of vehicleBrands" [value]="brand.name">
+        <mat-select
+          name="brand"
+          required
+          ngModel
+          (ngModelChange)="onBrandChange()"
+        >
+          <mat-option *ngFor="let brand of brands" [value]="brand.name">
             {{ brand.name }}
           </mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field appearance="outline" class="form__field">
         <mat-label>Model</mat-label>
-        <mat-select [(ngModel)]="auctionData.model" name="vehicleModel">
+        <mat-select
+          name="model"
+          required
+          ngModel
+          [disabled]="!auctionForm.value.brand"
+        >
           <mat-option *ngFor="let model of availableModels" [value]="model.name">
             {{ model.name }}
           </mat-option>
@@ -21,7 +31,11 @@
       </mat-form-field>
       <mat-form-field appearance="outline" class="form__field">
         <mat-label>Typ</mat-label>
-        <mat-select [(ngModel)]="auctionData.type" name="vehicleType">
+        <mat-select
+          name="type"
+          required
+          ngModel
+        >
           <mat-option *ngFor="let type of vehicleTypes" [value]="type">
             {{ type }}
           </mat-option>
@@ -29,29 +43,57 @@
       </mat-form-field>
       <mat-form-field appearance="outline" class="form__field">
         <mat-label>VIN</mat-label>
-        <input matInput [(ngModel)]="auctionData.VIN" name="vehicleVIN">
+        <input
+          matInput
+          name="VIN"
+          ngModel
+        >
       </mat-form-field>
       <mat-form-field appearance="outline" class="form__field">
         <mat-label>Numer rejestracyjny</mat-label>
-        <input matInput [(ngModel)]="auctionData.registration_number" name="registrationNumber">
+        <input
+          matInput
+          name="registration_number"
+          ngModel
+        >
       </mat-form-field>
       <mat-form-field appearance="outline" class="form__field">
         <mat-label>Rok produkcji</mat-label>
-        <input matInput [(ngModel)]="auctionData.production_year" type="number" name="vehicleProductionYear">
+        <input
+          matInput
+          name="production_year"
+          ngModel
+          type="number"
+        >
       </mat-form-field>
       <mat-form-field appearance="outline" class="form__field">
         <mat-label>Pojemność silnika</mat-label>
-        <input matInput [(ngModel)]="auctionData.engine_capacity" type="number" name="engineCapacity">
+        <input
+          matInput
+          name="engine_capacity"
+          ngModel
+          type="number"
+          required
+        >
         <span matSuffix>cm3</span>
       </mat-form-field>
       <mat-form-field appearance="outline" class="form__field">
         <mat-label>Moc silnika</mat-label>
-        <input matInput [(ngModel)]="auctionData.engine_power" type="number" name="enginePower">
+        <input
+          matInput
+          name="engine_power"
+          ngModel
+          type="number"
+        >
         <span matSuffix>KM</span>
       </mat-form-field>
       <mat-form-field appearance="outline" class="form__field">
         <mat-label>Skrzynia biegów</mat-label>
-        <mat-select [(ngModel)]="auctionData.gearbox" name="vehicleGearbox">
+        <mat-select
+          name="gearbox"
+          ngModel
+          required
+        >
           <mat-option *ngFor="let gearbox of vehicleGearbox" [value]="gearbox">
             {{ gearbox }}
           </mat-option>
@@ -59,7 +101,10 @@
       </mat-form-field>
       <mat-form-field appearance="outline" class="form__field">
         <mat-label>Napęd</mat-label>
-        <mat-select [(ngModel)]="auctionData.drive_system" name="vehicleDriveSystem">
+        <mat-select
+          name="drive_system"
+          ngModel
+        >
           <mat-option *ngFor="let driveSystem of vehicleDriveSystems" [value]="driveSystem">
             {{ driveSystem }}
           </mat-option>
@@ -67,7 +112,10 @@
       </mat-form-field>
       <mat-form-field appearance="outline" class="form__field">
         <mat-label>Kolor</mat-label>
-        <mat-select [(ngModel)]="auctionData.color" name="vehicleColor">
+        <mat-select
+          name="color"
+          ngModel
+        >
           <mat-option *ngFor="let color of vehicleColors" [value]="color">
             {{ color }}
           </mat-option>
@@ -75,7 +123,10 @@
       </mat-form-field>
       <mat-form-field appearance="outline" class="form__field">
         <mat-label>Rodzaj koloru</mat-label>
-        <mat-select [(ngModel)]="auctionData.color_type" name="vehicleColorType">
+        <mat-select
+          name="color_type"
+          ngModel
+        >
           <mat-option *ngFor="let colorType of vehicleColorTypes" [value]="colorType">
             {{ colorType }}
           </mat-option>
@@ -83,14 +134,28 @@
       </mat-form-field>
       <mat-form-field appearance="outline" class="form__field">
         <mat-label>Cena</mat-label>
-        <input matInput [(ngModel)]="auctionData.price" type="number" name="vehiclePrice">
+        <input
+          matInput
+          name="price"
+          ngModel
+          type="number"
+          required
+        >
         <span matSuffix>PLN</span>
       </mat-form-field>
     </mat-card-content>
 
     <mat-card-actions class="form__actions">
-      <button mat-stroked-button type="reset">Wyczyść formularz</button>
-      <button mat-raised-button color="primary" (click)="createAuction()">Wystaw ogłoszenie</button>
+      <button
+        mat-stroked-button
+        type="reset"
+        (click)="onReset(auctionForm)">Wyczyść formularz</button>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!auctionForm.valid"
+      >Wystaw ogłoszenie</button>
     </mat-card-actions>
   </form>
 </mat-card>
