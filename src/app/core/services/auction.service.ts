@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Auction } from '../../model/auction';
-import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class AuctionService {
@@ -23,8 +22,6 @@ export class AuctionService {
   }
 
   create(auctionData: Auction) {
-    console.log('test');
-    auctionData.ID = uuidv4();
     this._firestore
       .collection(this._path)
       .add(auctionData)
